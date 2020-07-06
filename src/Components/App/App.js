@@ -5,6 +5,19 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchResults: [{ name: 'Muskurane', artist: 'Arijit Singh', album: 'City Lights', id: 1 },
+      { name: 'Khamoshiyan', artist: 'Arijit Singh', album: 'Khamoshiya', id: 2 },
+      { name: 'Samjhawan', artist: 'Arijit Singh', album: 'Badrinath ki Dulhaniya', id: 3 }],
+      playlistName: 'Soulfull Songs',
+      playlistTracks: [{ name: 'Shayad Kabhi', artist: 'Arijit Singh', album: 'Love Aaj Kal', id: 4 },
+      { name: 'Tum Hi Hoo', artist: 'Arijit Singh', album: 'Aashiqui', id: 5 }]
+    }
+  }
+
   render() {
     return (
       <div>
@@ -12,8 +25,8 @@ class App extends React.Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults />
-            <Playlist />
+            <SearchResults searchResults={this.state.searchResults} />
+            <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
       </div >

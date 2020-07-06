@@ -23,21 +23,21 @@ class App extends React.Component {
   }
 
   addTrack(track) {
-    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+    let tracks = this.state.playlistTracks;
+    if (tracks.find(savedTrack => savedTrack.id === track.id)) {
       return;
     }
-    let newPlaylist = this.state.playlistTracks;
-    newPlaylist.push(track);
 
-    this.setState = { playlistTracks: newPlaylist };
+    tracks.push(track);
+    this.setState({ playlistTracks: tracks });
   }
 
   removeTrack(track) {
-    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-      let newPlaylist = this.state.playlistTracks;
-      newPlaylist.pop(track);
+    let tracks = this.state.playlistTracks;
 
-      this.setState = { playlistTracks: newPlaylist };
+    if (tracks.find(savedTrack => savedTrack.id === track.id)) {
+      tracks.pop(track);
+      this.setState({ playlistTracks: tracks });
     }
   }
 
@@ -48,11 +48,12 @@ class App extends React.Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-            <Playlist 
-              playlistName={this.state.playlistName} 
+            <SearchResults searchResults={this.state.searchResults}
+              onAdd={this.addTrack} />
+            <Playlist
+              playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
-              onRemove={this.removeTrack}  />
+              onRemove={this.removeTrack} />
           </div>
         </div>
       </div >
